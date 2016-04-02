@@ -1,90 +1,5 @@
 /**
- * Object definition with defineProperties
- * Prototyping
- * Inheritance
- */
-function defPrtConstructor() {
-
-    var floor = {
-        _dateConstructed: "1/2/3",
-        "***": "123",
-        title: "My Title",
-        description: "My Description"
-    };
-
-    // Single defineProperty. Getter and setter
-    Object.defineProperty( floor, "dateConstructed", {
-       get: function() {
-
-           // Log access to property
-           return this._dateConstructed;
-       },
-       set: function( newValue ) {
-
-           // Log and check
-           this._dateConstructed = newValue;
-       }
-    } );
-
-    Object.defineProperty( floor, "toString", {
-        value: function __FloorToStringMethod() {
-            return this.title + " " + this.description;
-        },
-        writable: false,
-        enumerable: false,
-        configurable: false
-    } );
-
-    // Defining constatn property
-    Object.defineProperty( floor, "num", {
-        value: "123",
-        writable: false,
-        enumerable: true,
-        configurable: false
-    } );
-
-    // Defining multiple properties at the same time
-    Object.defineProperties( floor, {
-        "somePrt": {
-            value: "test 1",
-            writable: false,
-            enumerable: true,
-            configurable: false
-        },
-        "some other": {
-            value: "test 2",
-            writable: false,
-            enumerable: false,
-            configurable: false
-        }
-    } );
-
-    // Prototype inheritance
-    var hiddenFloor = Object.create( floor );
-    Object.defineProperty( hiddenFloor, "toString", {
-        value: function __HiddenFloorToStringMethod() {
-            return this.title + " is hidden";
-        },
-        writable: false,
-        enumerable: false,
-        configurable: false
-    } );
-
-    console.log( hiddenFloor.toString() );
-
-    floor.dateConstructed = "2/3/4";
-    floor[ "***" ] = "5/6/7";
-
-    for ( var floorPrts in floor ) {
-
-        console.log( floorPrts, floor[ floorPrts ],
-                    Object.getOwnPropertyDescriptor( floor, floorPrts ) );
-    }
-}
-
-/**
- * Consstructor function pattern example
- * "All-public class" build
+ * Constructor function pattern example
  * Decorator example
  */
 function constrFunc() {
@@ -132,6 +47,119 @@ function constrFunc() {
 
     f2.printNamingMask();
     console.log( f1, f2 );
+}
+
+/**
+ * Object-only constructor pattern
+ * Another approach to inheritance and prototyping
+ */
+function objOnlyPattern() {
+
+    var PrototypeObj = {
+        name: "default",
+        init: function __PrototypeObjInit( name ) {
+            this.name = name;
+        },
+        identify: function __PrototypeObjIdentify() {
+            return "Name: " + this.name;
+        }
+    };
+
+    var MainObj = Object.create( PrototypeObj );
+
+    MainObj.subMethod = function __MainObjSubMethod() {
+
+        console.log( "Identity - ", this.identify(), "." );
+    };
+
+    var sb1 = Object.create( MainObj );
+    sb1.init( "MainObject1" );
+    sb1.subMethod();
+    console.log( sb1.identify() );
+
+    for ( var i in PrototypeObj ) {
+        console.log( PrototypeObj[ i ] );
+    }
+
+    // Warning - enumerable functions
+    // See next example to see how we can make functions not enumerable
+
+}
+
+/**
+ * Object definition with defineProperties
+ * Prototyping
+ * Inheritance
+ */
+function defPrtConstructor() {
+
+    var floor = {
+        _dateConstructed: "1/2/3",
+        "***": "123",
+        title: "My Title",
+        description: "My Description"
+    };
+
+    // Single defineProperty. Getter and setter
+    Object.defineProperty( floor, "dateConstructed", {
+       get: function() {
+
+           // Log access to property
+           return this._dateConstructed;
+       },
+       set: function( newValue ) {
+
+           // Log and check
+           this._dateConstructed = newValue;
+       }
+    } );
+
+    Object.defineProperty( floor, "toString", {
+        value: function __FloorToStringMethod() {
+            return this.title + " " + this.description;
+        },
+        writable: false,
+        enumerable: false,
+        configurable: false
+    } );
+
+    // Defining multiple properties at the same time
+    Object.defineProperties( floor, {
+        "somePrt": {
+            value: "test 1",
+            writable: false,
+            enumerable: true,
+            configurable: false
+        },
+        "some other": {
+            value: "test 2",
+            writable: false,
+            enumerable: false,
+            configurable: false
+        }
+    } );
+
+    // Prototype inheritance
+    var hiddenFloor = Object.create( floor );
+    Object.defineProperty( hiddenFloor, "toString", {
+        value: function __HiddenFloorToStringMethod() {
+            return this.title + " is hidden";
+        },
+        writable: false,
+        enumerable: false,
+        configurable: false
+    } );
+
+    console.log( hiddenFloor.toString() );
+
+    floor.dateConstructed = "2/3/4";
+    floor[ "***" ] = "5/6/7";
+
+    for ( var floorPrts in floor ) {
+
+        console.log( floorPrts, floor[ floorPrts ],
+                    Object.getOwnPropertyDescriptor( floor, floorPrts ) );
+    }
 }
 
 /**
