@@ -159,6 +159,7 @@ function factoryEx() {
 /**
  * Module pattern with public and private
  * properties and methods
+ * TODO: add mention that all methods can address publicAPI variable
  */
 var myModule = ( function ModulePattern( callBackFcn ) {
     var privateVar = "private";

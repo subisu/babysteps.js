@@ -82,10 +82,30 @@
 			"outDir": null
 		},
         {
-			"name": "Launch Scope.js.js",
+			"name": "Launch Scope.js",
 			"type": "node",
 			"request": "launch",
 			"program": "${workspaceRoot}/Scope.js",
+			"stopOnEntry": false,
+			"args": [],
+			"cwd": "${workspaceRoot}",
+			"preLaunchTask": null,
+			"runtimeExecutable": null,
+			"runtimeArgs": [
+				"--nolazy"
+			],
+			"env": {
+				"NODE_ENV": "development"
+			},
+			"externalConsole": false,
+			"sourceMaps": false,
+			"outDir": null
+		},
+        {
+			"name": "Launch BehavioralPatterns.js",
+			"type": "node",
+			"request": "launch",
+			"program": "${workspaceRoot}/BehavioralPatterns.js",
 			"stopOnEntry": false,
 			"args": [],
 			"cwd": "${workspaceRoot}",
