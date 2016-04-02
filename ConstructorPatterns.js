@@ -157,32 +157,33 @@ function factoryEx() {
 }
 
 /**
- * Module class pattern with public and private
+ * Module pattern with public and private
  * properties and methods
  */
-function ModulePattern( callBackFcn ) {
+var myModule = ( function ModulePattern( callBackFcn ) {
     var privateVar = "private";
 
     function privateMethod() {
         console.log( "private method" );
     }
 
-    var publicObject = {
+    function publicMethod() {
+        privateMethod();
+        if ( typeof callBackFcn == "function" ) {
+
+        callBackFcn();
+        }
+    }
+
+    var publicAPI = {
 
         publicVar: "123",
 
-        publicMethod: function() {
-            privateMethod();
-            if ( typeof callBackFcn == "function" ) {
-
-                callBackFcn();
-            }
-
-        }
+        publicMethod: publicMethod
     };
 
-    return publicObject;
-}
+    return publicAPI;
+} )();
 
 /**
  * Flyweight concept
