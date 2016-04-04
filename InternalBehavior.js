@@ -6,6 +6,13 @@ function numIssuesPrecision() {
     var total = 3.3 + 5.1;
     console.log( total ); //8.399999999999999
     console.log( total.toFixed( 2 ) );
+
+    var a = 0.1;
+    var b = 0.2;
+    var c = 0.3;
+
+    console.log( "( ( a + b ) + c ) === ( a + ( b + c ) ):" );
+    console.log( ( ( a + b ) + c ) === ( a + ( b + c ) ) );
 }
 
 /**
