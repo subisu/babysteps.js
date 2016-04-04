@@ -44,3 +44,34 @@ function compBehavior() {
     console.log( "true == 2 : ", true == 2 );
     console.log( "true === 2 : ", true === 2 );
 }
+
+/**
+ * Important example of proper braces positioning
+ * In leftPos we assume that return statement will take
+ * object on next line of code and return it.
+ * JS compiler will actually put semicolon right after return statement
+ * resulting in returning undefined value
+ *
+ * rightPos is showing how to return objects properly
+ */
+function returningObjectsAndPositionOfBraces() {
+
+    function leftPos() {
+        return
+        {
+            ok: true
+        };
+    }
+
+    function rightPos() {
+        return {
+            ok: true
+        };
+    }
+
+    var leftRes = leftPos();
+    var rightRes = rightPos();
+
+    console.log( leftRes, rightRes );
+}
+
