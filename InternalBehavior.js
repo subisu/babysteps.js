@@ -34,12 +34,13 @@ function numToStr() {
     console.log( Number( strNum ),
                  +strNum,
                  parseInt( strNum, 10 ) );
+
     // Be aware that parseInt parses "0777" strings as octal numbers
     // Always use 10 radix
 }
 
 /**
- * Tricky comparrator behavior 
+ * Tricky comparrator behavior
  * Implicit conversion
  * Expected: value converted to true or falce
  * Real: Boolean converted to value 1 or 0
@@ -201,5 +202,30 @@ function logicalOperators() {
     var numToProcess = inputConvertedNumber || defaultNum;
 
     console.log( numToProcess );
+
+}
+
+/**
+ * Sort problem.
+ * Default compare function treats members as string
+ * We need to supply external comparrator function
+ */
+
+function sortingProblem() {
+
+    var numArray = [ 1, 10, 3, 4, 35 ];
+
+    console.log( "Trying to sort numerical array with default sort:" );
+    console.log( numArray.sort() );
+
+    numArray = [ 1, 10, 3, 4, 45 ];
+
+    function sortNumber( a, b ) {
+
+        return a - b;
+    }
+
+    console.log( "Proper sort with external compare function" );
+    console.log( numArray.sort( sortNumber ) );
 
 }
