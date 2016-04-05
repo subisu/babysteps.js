@@ -39,20 +39,6 @@ function numToStr() {
 }
 
 /**
- * Calculation boolean expressions with object && value
- */
-function objAndValue() {
-    var obj = {
-        test: "calc"
-    };
-
-    console.log( "Object and number: ", obj && 99 );
-    console.log( "Object and same object: ", obj && obj );
-    console.log( "Boolean and number: ", true && 99 );
-    console.log( "Null and NaN:", null && NaN );
-}
-
-/**
  * Tricky comparrator behavior 
  * Implicit conversion
  * Expected: value converted to true or falce
@@ -148,4 +134,72 @@ function arrLengthValue() {
     console.log( "Array:" );
     console.log( arr );
     console.log( "Array.length: ", arr.length );
+}
+
+/**
+ * && and || operators explained
+ */
+
+function logicalOperators() {
+
+    /**
+     * && operator:
+     * if first operator is truthy
+     * then result is the second operand
+     * else result is first operand
+     */
+
+    /**
+     * Example functions: check existence of object
+     */
+    function objCheckOne( obj ) {
+        if ( obj ) {
+
+            return obj.member;
+        } else {
+
+            return obj;
+        }
+    }
+
+    function objCheckTwo( obj ) {
+
+        return obj && obj.member;
+    }
+
+    testObj = {
+        member: "member"
+    };
+
+    console.log( objCheckOne( testObj ), objCheckTwo( testObj ) );
+
+    /**
+     * || operator
+     * if first operand if truthy
+     * then result is first operand
+     * else result is second operand
+     *
+     * Default values
+     * var tmp = input || defValue
+     * May not work as expected if the first operand
+     * is a number 0, because 0 if falsy
+     */
+
+    // Empty input
+    var inputStr = "";
+    var defaultStr = "Default";
+
+    var strToProcess = inputStr || defaultStr;
+    console.log( "Input: empty, using default: " );
+    console.log( strToProcess );
+
+    // Legit  input 0
+    var inputConvertedNumber = 0;
+    var defaultNum = 42;
+
+    console.log( "Input: legit zero but comparrator chooses default: " );
+    var numToProcess = inputConvertedNumber || defaultNum;
+
+    console.log( numToProcess );
+
 }
