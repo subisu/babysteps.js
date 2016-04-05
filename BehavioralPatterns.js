@@ -1,5 +1,5 @@
 /**
- * Constructor pattern makes it easier to control methods executed
+ * Command pattern makes it easier to control methods executed
  * on objects.
  * TODO: Add example of logging or archiving methods with object state for each call
  */
