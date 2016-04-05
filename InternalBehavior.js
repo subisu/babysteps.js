@@ -229,3 +229,53 @@ function sortingProblem() {
     console.log( numArray.sort( sortNumber ) );
 
 }
+
+/**
+ * Functions inherited from a prototype are
+ * included in the for in enumeration.
+ */
+function funcInheritanceAndEnumeration() {
+
+    // Explicit hoisting
+    var name;
+    var PrototypeObj = {
+        name: "default",
+        init: function __PrototypeObjInit( name ) {
+            this.name = name;
+        },
+        identify: function __PrototypeObjIdentify() {
+            return "Name: " + this.name;
+        }
+    };
+
+    var obj = Object.create( PrototypeObj );
+
+    obj.subMethod = function __MainObjSubMethod() {
+
+        console.log( "Identity - ", this.identify(), "." );
+    };
+
+    // Enumeration
+
+    console.log( "Default enumeration: " );
+    for ( name in obj ) {
+        console.log( name );
+    }
+
+    //Warning: hasOwnProperty can be "overwritten"
+    //by placind data value on object with same name
+    console.log( "\nobj.hasOwnProperty call: " );
+    for ( name in obj ) {
+        if ( obj.hasOwnProperty( name ) ) {
+            console.log( "Own property: ", name );
+        }
+    }
+
+    //Much safer approach
+    console.log( "\nObject.prototype.hasOwnProperty.call( obj, name ): " );
+    for ( name in obj ) {
+        if ( Object.prototype.hasOwnProperty.call( obj, name ) ) {
+            console.log( "Own property: ", name );
+        }
+    }
+}
