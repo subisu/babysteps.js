@@ -182,14 +182,25 @@ function factoryEx() {
     var add5 = add( 5 );
     console.log( add5( 5 ) );
 
+    var digitName = ( function() {
+        var names = [ "zero", "one", "two" ];
+
+        return function( num ) {
+
+            return names[ n ];
+        };
+    }() );
+
+    console.log( digitName( 2 ) );
+
 }
 
 /**
- * Module pattern with public and private
+ * Singleton pattern with public and private
  * properties and methods
- * TODO: add mention that all methods can address publicAPI variable
  */
-var myModule = ( function ModulePattern( callBackFcn ) {
+var mySingleton = ( function SingletonPattern( callBackFcn ) {
+
     var privateVar = "private";
 
     function privateMethod() {
@@ -213,6 +224,48 @@ var myModule = ( function ModulePattern( callBackFcn ) {
 
     return publicAPI;
 } )();
+
+/**
+ * Module pattern with inheritance example
+ */
+function modulePattern() {
+
+    function objProt( name ) {
+
+        var privateVar = "private";
+
+        function privateMethod() {
+            console.log( "private method" );
+            console.log( publicAPI.name );
+        }
+
+        function publicMethod() {
+            privateMethod();
+            console.log( "Public method calling private method" );
+        }
+
+        var publicAPI = {
+            name: name,
+            publicMethod: publicMethod
+        };
+
+        return publicAPI;
+    }
+
+    function objMain( name ) {
+        var that = objProt( name );
+
+        that.test = function( testName ) {
+            return testName === this.name;
+        };
+
+        return that;
+    }
+
+    var mainObj = objMain( "test" );
+    console.log( mainObj.test( "test" ) );
+    mainObj.publicMethod();
+}
 
 /**
  * Flyweight concept
