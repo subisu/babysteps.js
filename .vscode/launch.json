@@ -122,10 +122,10 @@
 			"outDir": null
 		},
         {
-			"name": "Launch FunctionalProgramming.js",
+			"name": "Launch FunctionalAndAsyncProgramming.js",
 			"type": "node",
 			"request": "launch",
-			"program": "${workspaceRoot}/FunctionalProgramming.js",
+			"program": "${workspaceRoot}/FunctionalAndAsyncProgramming.js",
 			"stopOnEntry": false,
 			"args": [],
 			"cwd": "${workspaceRoot}",

@@ -46,3 +46,65 @@ function monadEx() {
     var monadMaybe = maybe( null );
     monadMaybe.bind( null );
 }
+
+/**
+ * Usage example of standart library Promises
+ */
+function standartPromiseEx() {
+
+    function fakeAjax( url, callbackFunc ) {
+
+        var fakeResponses = {
+            "file1": "The first text",
+            "file2": "The middle text",
+            "file3": "The last text"
+        };
+        var randomDelay = ( Math.round( Math.random() * 1E4 ) % 8000 ) + 1000;
+
+        console.log( "Requesting: " + url );
+
+        setTimeout( function() {
+
+            callbackFunc( fakeResponses[ url ] );
+        }, randomDelay );
+    }
+
+    function output( text ) {
+        console.log( text );
+    }
+
+    // **************************************
+
+    function getFile( file ) {
+        return new Promise( function( resolve ) {
+            fakeAjax( file, resolve );
+        } );
+    }
+
+    // Request all files at once in
+    // "parallel" via `getFile(..)`.
+    //
+    // Render as each one finishes,
+    // but only once previous rendering
+    // is done.
+
+    var fileNames = [ "file1", "file2", "file3" ];
+
+    fileNames.map( getFile )
+    .reduce(
+        function( chain, filePromise ) {
+            return chain
+                .then( function() {
+                    return filePromise;
+                } )
+                .then( output );
+        },
+        Promise.resolve() // Fulfilled promise to start chain
+    )
+    .then( function() {
+        output( "Complete!" );
+    } );
+
+}
+
+standartPromiseEx();
