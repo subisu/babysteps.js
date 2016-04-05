@@ -26,6 +26,19 @@ function convertToBool() {
 }
 
 /**
+ * Number to string conversions
+ */
+function numToStr() {
+    var strNum = "123";
+
+    console.log( Number( strNum ),
+                 +strNum,
+                 parseInt( strNum, 10 ) );
+    // Be aware that parseInt parses "0777" strings as octal numbers
+    // Always use 10 radix
+}
+
+/**
  * Calculation boolean expressions with object && value
  */
 function objAndValue() {
@@ -40,7 +53,8 @@ function objAndValue() {
 }
 
 /**
- * Tricky comparrator conversion
+ * Tricky comparrator behavior 
+ * Implicit conversion
  * Expected: value converted to true or falce
  * Real: Boolean converted to value 1 or 0
  * Caution.
@@ -50,6 +64,9 @@ function compBehavior() {
     console.log( "true == 1 : ", true == 1 );
     console.log( "true == 2 : ", true == 2 );
     console.log( "true === 2 : ", true === 2 );
+    console.log( "NaN === NaN : ", NaN === NaN );
+    console.log( "NaN !== NaN : ", NaN !== NaN );
+    console.log( "isNaN( NaN ) : ", isNaN( NaN ) );
 }
 
 /**
