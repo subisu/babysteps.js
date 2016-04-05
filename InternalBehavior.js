@@ -82,3 +82,36 @@ function returningObjectsAndPositionOfBraces() {
     console.log( leftRes, rightRes );
 }
 
+/**
+ * For and other loop staements can have
+ * label:
+ * that allow us to break from deeply nested structures
+ * break label;
+ */
+function labelUsage() {
+
+    var i;
+    var j;
+    var k;
+
+    outerLoop:
+    for ( i = 0; i < 30; i += 1 ) {
+
+        for ( j = 0; j < 10; j += 1 ) {
+
+            for ( k = 0; k < 10; k += 1 ) {
+
+                if ( i === 18 && j === 3 && k === 5 ) {
+                    console.log( "Breaking from i, j, k: ", i, j, k );
+                    break outerLoop;
+                }
+            }
+
+            // Debug:
+            // console.log( "j loop ", j, " finished" );
+        }
+
+        // Debug
+        // console.log( "i loop ", i, " finished" );
+    }
+}
