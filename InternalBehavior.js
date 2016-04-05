@@ -132,3 +132,20 @@ function labelUsage() {
         // console.log( "i loop ", i, " finished" );
     }
 }
+
+/**
+ * Array special property "length" contains number always 1
+ * larger than the highest integer subscript
+ * Not the number of elements
+ * Warning: sparse arrays
+ */
+function arrLengthValue() {
+
+    arr = [ 1, 2, 3 ];
+    arr[ 8 ] = 8;
+    arr[ 45 ] = 45;
+
+    console.log( "Array:" );
+    console.log( arr );
+    console.log( "Array.length: ", arr.length );
+}
