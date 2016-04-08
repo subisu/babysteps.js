@@ -3,7 +3,7 @@
  */
 
 module.exports = {
-    scopeUnusualBehavior: scopeUnusualBehavior,
+    scopeBehavior: scopeBehavior,
     withBehavior: withBehavior
 };
 
@@ -13,7 +13,7 @@ module.exports = {
  * for loop will bind this var to for loop scope.
  * It doesn't.
  */
-function scopeUnusualBehavior() {
+function scopeBehavior() {
     "use strict";
 
     // Since there no var statement, i will represent
@@ -22,6 +22,16 @@ function scopeUnusualBehavior() {
         i += 2;
     }
 
+    console.log( "If we use var statement in following loop, it won't bind i to loop block" );
+    console.log( "for ( var i = 0; i < 10; i += 1 ) {" );
+    console.log( "It will actually declare i within scope of scopeBehavior." );
+    console.log( "And if we call a function within the same parent function scope" );
+    console.log( "function changer( ) { i += 2; }" );
+    console.log( "and forget to declare changer's i properly" );
+    console.log( "this function will actually change variable inside parent function scope" );
+    console.log( "and affect flow of the loop" );
+    console.log( "Instead of 0-9 we get:" );
+
     for ( var i = 0; i < 10; i += 1 ) {
         console.log( i );
 
@@ -29,13 +39,17 @@ function scopeUnusualBehavior() {
         changer();
     }
 
-    console.log( "out i", i );
+    console.log( "If we use \"let\" statement variable i will be in \"for\" block scope" );
+    console.log( "for ( let i = 0; i < 5; i += 1 ) {" );
 
     for ( let i = 0; i < 5; i += 1 ) {
         console.log( "Block i: ", i );
+
+        // This won't change i
+        changer();
     }
 
-    console.log( "out i", i );
+    console.log( "The function actually changed parens function\'s i", i );
 }
 
 /**
